@@ -1,3 +1,6 @@
 *.csv
 *.tsv
-*.py
+*.pyc
+*.bat
+*.exe
+*.txt
