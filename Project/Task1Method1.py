@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.colors import LogNorm
-import cv2
+
 
 # Load dataset
 df = pd.read_csv('Solar_flare_RHESSI_2004_05.csv')
