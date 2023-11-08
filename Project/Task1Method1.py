@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.colors import LogNorm
+import cv2
 
 # Load dataset
 df = pd.read_csv('Solar_flare_RHESSI_2004_05.csv')
@@ -25,7 +26,7 @@ heatmap1, xedges1, yedges1 = np.histogram2d(
 extent1 = [-circle_radius, circle_radius, -circle_radius, circle_radius]
 fig1, ax1 = plt.subplots(figsize=(10, 8))
 sc1 = ax1.imshow(
-    heatmap1.T, extent=extent1, origin='lower', aspect='auto', cmap='YlGnBu', alpha=0.7, norm=LogNorm()
+    heatmap1.T, extent=extent1, origin='lower', aspect='auto', cmap='YlOrRd', alpha=0.7, norm=LogNorm()
 )
 ax1.set_title('Solar Flare Intensity Heatmap (Months 1+2+3+4) - Total.counts')
 ax1.set_xlabel('X Position (arcseconds)')
@@ -41,7 +42,7 @@ heatmap2, xedges2, yedges2 = np.histogram2d(
 extent2 = [-circle_radius, circle_radius, -circle_radius, circle_radius]
 fig2, ax2 = plt.subplots(figsize=(10, 8))
 sc2 = ax2.imshow(
-    heatmap2.T, extent=extent2, origin='lower', aspect='auto', cmap='YlGnBu', alpha=0.7, norm=LogNorm()
+    heatmap2.T, extent=extent2, origin='lower', aspect='auto', cmap='YlOrRd', alpha=0.7, norm=LogNorm()
 )
 ax2.set_title('Solar Flare Intensity Heatmap (Months 21+22+23+24) - Total.counts')
 ax2.set_xlabel('X Position (arcseconds)')
@@ -51,3 +52,5 @@ ax2.add_artist(circle2)
 cbar2 = fig2.colorbar(sc2, ax=ax2, label='Intensity (Log Scale)')
 
 plt.show()
+
+
