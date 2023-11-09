@@ -19,11 +19,12 @@ print("Smallest y.pos.asec:", smallest_y)
 
 radius = 1000
 
-def intensityMethod2(df_subset, title):
+def intensityMethod1(df_subset, title):
     weighted_values = df_subset['total.counts']
     intensity, xedges, yedges = np.histogram2d(
-        df_subset['x.pos.asec'], df_subset['y.pos.asec'], bins=30, weights=weighted_values
+        df_subset['x.pos.asec'], df_subset['y.pos.asec'], bins=40, weights=weighted_values
     )
+    print(intensity)
    
     extent = [-radius, radius, -radius, radius]
     graph, axis = plt.subplots(figsize=(10, 8))
@@ -46,7 +47,9 @@ df_1to4 = df[(df['year'] == 2004) & (df['month'].between(1, 4))]
 df_21to24 = df[(df['year'] == 2005) & (df['month'].between(9, 12))]
 
 #make graphs
-graph1, axis1 = intensityMethod2(df_1to4, 'Solar Flare Intensity Graph Months 1+2+3+4 - Total.Counts')
-graph2, axis2 = intensityMethod2(df_21to24, 'Solar Flare Intensity Graph Months 21+22+23+24 - Total.Counts')
+graph1, axis1 = intensityMethod1(df_1to4, 'Solar Flare Intensity Graph Months 1+2+3+4 - Total.Counts')
+graph2, axis2 = intensityMethod1(df_21to24, 'Solar Flare Intensity Graph Months 21+22+23+24 - Total.Counts')
 
 plt.show()
+
+
