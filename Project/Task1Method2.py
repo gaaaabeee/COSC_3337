@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import os
 from matplotlib.colors import LogNorm
 
 # Load dataset
@@ -45,8 +46,26 @@ df_1to4 = df[(df['year'] == 2004) & (df['month'].between(1, 4))]
 #months 21+22+23+24
 df_21to24 = df[(df['year'] == 2005) & (df['month'].between(9, 12))]
 
-#make graphs
+
+# Create a directory to save the PNG files
+output_dir = 'intensity_graphs_method2'
+os.makedirs(output_dir, exist_ok=True)
+
+# Months 1+2+3+4
+df_1to4 = df[(df['year'] == 2004) & (df['month'].between(1, 4))]
 graph1, axis1 = intensityMethod2(df_1to4, 'Solar Flare Intensity Heatmap (Months 1+2+3+4) - Duration.s & Energy.keV')
+
+# Save the first plot as a PNG file
+output_filename1 = os.path.join(output_dir, 'intensity_graph_method2_months_1to4.png')
+graph1.savefig(output_filename1, bbox_inches='tight')
+
+# Months 21+22+23+24
+df_21to24 = df[(df['year'] == 2005) & (df['month'].between(9, 12))]
 graph2, axis2 = intensityMethod2(df_21to24, 'Solar Flare Intensity Heatmap (Months 21+22+23+24) - Duration.s & Energy.keV')
+
+# Save the second plot as a PNG file
+output_filename2 = os.path.join(output_dir, 'intensity_graph_method2_months_21to24.png')
+graph2.savefig(output_filename2, bbox_inches='tight')
+
 
 plt.show()

@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.colors import LogNorm
+import os
 
 # Load dataset
 df = pd.read_csv('Solar_flare_RHESSI_2004_05.csv')
@@ -39,17 +40,27 @@ def intensityMethod1(df_subset, title):
     cbar = graph.colorbar(sc, ax=axis, label='Intensity')
     return graph, axis
 
+# Create a directory to save the PNG files
+output_dir = 'intensity_graphs_method1'
+os.makedirs(output_dir, exist_ok=True)
 
-#months 1+2+3+4
+# Months 1+2+3+4
 df_1to4 = df[(df['year'] == 2004) & (df['month'].between(1, 4))]
-
-#months 21+22+23+24
-df_21to24 = df[(df['year'] == 2005) & (df['month'].between(9, 12))]
-
-#make graphs
 graph1, axis1 = intensityMethod1(df_1to4, 'Solar Flare Intensity Graph Months 1+2+3+4 - Total.Counts')
+
+# Save the first plot as a PNG file
+output_filename1 = os.path.join(output_dir, 'intensity_graph_method1_months_1to4.png')
+graph1.savefig(output_filename1, bbox_inches='tight')
+
+# Months 21+22+23+24
+df_21to24 = df[(df['year'] == 2005) & (df['month'].between(9, 12))]
 graph2, axis2 = intensityMethod1(df_21to24, 'Solar Flare Intensity Graph Months 21+22+23+24 - Total.Counts')
 
+# Save the second plot as a PNG file
+output_filename2 = os.path.join(output_dir, 'intensity_graph_method1_months_21to24.png')
+graph2.savefig(output_filename2, bbox_inches='tight')
+
 plt.show()
+
 
 
