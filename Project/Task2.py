@@ -16,10 +16,10 @@ new_df.loc[(new_df['year'] == 2005) & (new_df['month'] <= 12), 'month'] += 12
 new_df.to_csv('Solar_flare_RHESSI_2004_05_modified.csv', index=False)
 newdf = pd.read_csv('Solar_flare_RHESSI_2004_05_modified.csv')
 
-#boxplot
-fig, ax = plt.subplots(figsize=(10, 8))
-boxplot = ax.boxplot(df['total.counts'], vert=False, showfliers=False)
-plt.show()
+# #boxplot
+# fig, ax = plt.subplots(figsize=(10, 8))
+# boxplot = ax.boxplot(df['total.counts'], vert=False, showfliers=False)
+# plt.show()
 
 percentile_25 = np.percentile(df['total.counts'], 25)
 percentile_85 = np.percentile(df['total.counts'], 85)
@@ -61,7 +61,7 @@ for i in range(num_batches):
     bt = ((newdf['year'] == 2004) | (newdf['year'] == 2005)) & (newdf['month'].between(start_month, end_month))
 
     # Print the current batch's months
-    print(f'Months {start_month}-{end_month}')
+    print(f'Months {start_month}-{end_month} for HeatMap')
 
     batch = newdf[bt]
     batchX = batch['x.pos.asec'].values
@@ -126,7 +126,7 @@ for i in range(len(months)):
     bt = ((newdf['year'] == 2004) | (newdf['year'] == 2005)) & (newdf['month'].between(start_month, end_month))
 
     # Print the current batch's months
-    print(f'Months {start_month}-{end_month}')
+    print(f'Months {start_month}-{end_month} for KDE plot d1')
 
     batch = newdf[bt]
     batchX = batch['x.pos.asec'].values
@@ -166,7 +166,7 @@ for i in range(len(months)):
     bt = ((newdf['year'] == 2004) | (newdf['year'] == 2005)) & (newdf['month'].between(start_month, end_month))
 
     # Print the current batch's months
-    print(f'Months {start_month}-{end_month}')
+    print(f'Months {start_month}-{end_month} for KDE plot d2')
 
     batch = newdf[bt]
     batchX = batch['x.pos.asec'].values
